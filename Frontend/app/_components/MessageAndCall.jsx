@@ -16,7 +16,6 @@ import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import { Icon } from "@iconify/react";
 import axios from "axios";
-import VapiButton from "./VapiButton";
 import { marked } from "marked";
 
 import { Card, CardContent } from "@/components/ui/card";
@@ -639,11 +638,6 @@ const MessageAndCall = () => {
         </div>
       )}
 
-      {isPopoverOpen ? null : (
-        <div>
-          <VapiButton />
-        </div>
-      )}
 
       <div>
         {isPopoverOpen ? null : (
