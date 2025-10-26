@@ -145,6 +145,15 @@
   }
   body {
     @apply bg-background text-foreground;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+  
+  html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
   }
 }
 
@@ -298,6 +307,112 @@
       opacity: 1;
       transform: translateY(0);
     }
+  }
+  
+  /* Hero section animations */
+  .animate-fade-in {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+  }
+  
+  .animate-fade-in.delay-200 {
+    animation-delay: 0.2s;
+  }
+  
+  .animate-fade-in.delay-400 {
+    animation-delay: 0.4s;
+  }
+  
+  .animate-fade-in.delay-600 {
+    animation-delay: 0.6s;
+  }
+  
+  .animate-fade-in.delay-800 {
+    animation-delay: 0.8s;
+  }
+  
+  .animate-fade-in.delay-1000 {
+    animation-delay: 1s;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Gradient text animation */
+  .gradient-text-animate {
+    background: linear-gradient(-45deg, #3b82f6, #8b5cf6, #ec4899, #06b6d4);
+    background-size: 400% 400%;
+    animation: gradientShift 3s ease infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  /* Floating animation for particles */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  /* Pulse glow effect for chatbot button */
+  @keyframes pulseGlow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.4), 0 0 0 0 rgba(59, 130, 246, 0.7);
+      transform: scale(1);
+    }
+    50% {
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.6), 0 0 0 10px rgba(59, 130, 246, 0.1);
+      transform: scale(1.05);
+    }
+  }
+  
+  .animate-pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+  
+  /* Fix for text descenders being cut off */
+  .text-descender-safe {
+    padding-bottom: 0.3em !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+    line-height: 1.2 !important;
+    display: block !important;
+  }
+  
+  /* Ensure gradient text doesn't clip descenders */
+  .gradient-text-safe {
+    background-clip: text !important;
+    -webkit-background-clip: text !important;
+    background-attachment: scroll !important;
+    background-origin: padding-box !important;
   }
   
   /* Prevent layout shifts */

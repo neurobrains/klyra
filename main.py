@@ -19,7 +19,7 @@ import base64
 from starlette.background import BackgroundTasks
 from fastapi.responses import JSONResponse
 from langchain_community.chat_models import ChatOpenAI
-from langchain.embeddings.openai import OpenAIEmbeddings
+from langchain_openai import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
 from langchain.chains import ConversationalRetrievalChain
 from langchain.prompts import PromptTemplate

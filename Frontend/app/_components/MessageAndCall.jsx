@@ -187,13 +187,22 @@ const MessageAndCall = () => {
     setChatHistory((prev) => [...prev, userMessage]);
     setMessage("");
     setLoading(true);
+    
+    // Clear image immediately after sending
+    setImg("");
+    setImgUrl("");
+    setPreview("");
 
     const data = {
       query: message || suggest,
       userId: userName || "guest",
       domain: "https://klassy.com.bd/",
-      image: img,
     };
+    
+    // Only add image if it exists
+    if (img) {
+      data.image = img;
+    }
     axios
       .post(
         `http://localhost:8000/chat`,
@@ -243,11 +252,8 @@ const MessageAndCall = () => {
           }, 100);
           return newHistory;
         });
-        setProducts(res?.data?.products);
-        setImg("");
-        setImgUrl("");
-        setPreview("");
-        setMessage("");
+          setProducts(res?.data?.products);
+          setMessage("");
       })
       .catch((error) => {
         const errorResponse = {
@@ -255,9 +261,6 @@ const MessageAndCall = () => {
           text: "An error occurred while connecting to the server. Please try again later.",
         };
         setChatHistory((prev) => [...prev, errorResponse]);
-        setImg("");
-        setImgUrl("");
-        setPreview("");
         setMessage("");
         console.error("Error:", error.response?.data || error.message);
       })
@@ -505,10 +508,10 @@ const MessageAndCall = () => {
                             {/* Highlights */}
                             {item.highlights && (
                               <div className="bg-gradient-to-r from-blue-100 to-indigo-100 p-3 rounded-xl border border-blue-200">
-                                <p className="text-xs text-blue-800 font-semibold mb-1 flex items-center gap-1">
+                                <div className="text-xs text-blue-800 font-semibold mb-1 flex items-center gap-1">
                                   <div className="w-1 h-1 bg-blue-500 rounded-full"></div>
                                   Key Benefits
-                                </p>
+                                </div>
                                 <p className="text-xs text-blue-700 line-clamp-3 leading-relaxed">
                                   {item.highlights}
                                 </p>
@@ -644,11 +647,11 @@ const MessageAndCall = () => {
 
       <div>
         {isPopoverOpen ? null : (
-          <div className="fixed bottom-4 right-16 sm:right-20 bg-orange-50 text-xs sm:text-sm rounded-tl-full rounded-bl-full rounded-br-full p-2 shadow-xl cursor-pointer transition-all duration-200 hover:shadow-2xl">
-            <p className="whitespace-nowrap">chat with us</p>
+          <div className="fixed bottom-8 right-20 sm:right-24 bg-orange-50 text-xs sm:text-sm rounded-tl-full rounded-bl-full rounded-br-full p-2 shadow-xl cursor-pointer transition-all duration-200 hover:shadow-2xl">
+            <p className="whitespace-nowrap">Chat with us</p>
           </div>
         )}
-        <div className="fixed bottom-4 right-4 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full p-3 shadow-lg cursor-pointer hover:from-blue-700 hover:to-blue-800 transition-all duration-200 hover:shadow-xl hover:scale-105">
+        <div className={`fixed bottom-8 right-6 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-full p-3 shadow-lg cursor-pointer hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 transition-all duration-200 hover:shadow-xl hover:scale-105 ${!isPopoverOpen ? 'animate-pulse-glow' : ''}`}>
           <Popover onOpenChange={(open) => setIsPopoverOpen(open)}>
             <PopoverTrigger asChild>
               {isPopoverOpen ? (

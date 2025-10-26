@@ -66,9 +66,9 @@ const VapiAssistant = () => {
       <style jsx global>{`
         .vapi-btn {
           position: fixed !important;
-          bottom: 80px !important;
-          right: 20px !important;
-          background-color: #2563EB !important;
+          bottom: 100px !important;
+          right: 32px !important;
+          background: linear-gradient(135deg, #3B82F6, #A855F7, #F472B6) !important;
           color : white !important;
           transform: none !important;
           z-index: 1000;
@@ -79,16 +79,16 @@ const VapiAssistant = () => {
           transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
         }
         .vapi-btn-is-idle {
-          background-color: rgb(93, 254, 202) !important;
-          color: #000 !important;
+          background: linear-gradient(135deg, #3B82F6, #A855F7, #F472B6) !important;
+          color: #fff !important;
           border-radius: 25px !important;
         }
         .vapi-btn-is-loading {
-          background-color: rgb(93, 124, 202) !important;
+          background: linear-gradient(135deg, #1D4ED8, #7C3AED, #DB2777) !important;
           color: #fff !important;
         }
         .vapi-btn-is-active {
-          background-color: rgb(255, 0, 0) !important;
+          background: linear-gradient(135deg, #DC2626, #7C2D12, #991B1B) !important;
           color: #fff !important;
         }
         .vapi-btn-pill {
